@@ -19,7 +19,7 @@ app.get('/pdf', (req, res) => {
     pdf.create(html, { format: 'A4' }).toStream(writePdf);
   };
 
-  fs.readFile('./template.html', 'utf8', readHtml);
+  fs.readFile('./template/poc.html', 'utf8', readHtml);
 });
 
 var server = app.listen(8081, () => {
