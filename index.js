@@ -1,16 +1,18 @@
-var PDFDocument, doc;
 var fs = require('fs');
 var Mustache = require('mustache');
 var pdf = require('html-pdf');
-
+var bodyParser = require('body-parser');
 var express = require('express');
 var app = express();
 
+app.use(bodyParser());
+
 app.get('/pdf', (req, res) => {
 
-  const writePdf = (err, stream) => {    
-    res.contentType("application/pdf");    
-    stream.pipe(res)    
+  const writePdf = (err, stream) => {
+    if (err) return res.status(500).send({ error: 'Erro ao gerar pdf.' });
+    res.contentType("application/pdf");
+    stream.pipe(res)
     stream.on('end', () => res.end());
   };
 
