@@ -10,8 +10,8 @@ app.get('/pdf', (req, res) => {
 
   const writePdf = (err, stream) => {    
     res.contentType("application/pdf");    
-    pdfStream.pipe(res)    
-    pdfStream.on('end', () => res.end());
+    stream.pipe(res)    
+    stream.on('end', () => res.end());
   };
 
   const readHtml = (err, data) => {
